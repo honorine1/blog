@@ -1,0 +1,90 @@
+
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+
+{% block navbar %}
+{% include 'navbar.html'%}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid welcome-page">
+    <div class="container">
+        <div class="row">
+            
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="tab-content">
+                    
+                    
+
+                    <div class="jumbotron">
+                            
+                            <hr class="my-4">
+                            <!-- <img style="text-align: center; width:100%;"src="https://miro.medium.com/max/2560/1*2bk4TJ7x0JZEECQ9IvzUDw.jpeg"> -->
+                            <h3 style="text-align: center;"class="display-4"> welcome to My blog web  app</h3>
+                            <!-- <p style="text-align: center;"class="lead">a pitch is a presentation of a business idea to potential investors. People pitch a business because they need resources. If the goal is to raise startup cash, the target of the pitch is an investor. Other businesses pitch to potential customers to sell their product.</p> -->
+                            <p class="lead">
+                              <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+                              <a style="text-align: center; width:90%;color: whitesmoke;" class="btn btn-primary" href="/pitches/new/"> Post a Blog </a>
+                            </p>
+                    </div>
+                    
+                    <h3 style="color: blue;text-align: center">see all blogs here</h3>
+                    <br>
+                    <h3>blog title:me</h3>
+                    <h4> about me:i am 67 years old,i m single and still searching, shy and proud of myself</h4>
+                    <!-- <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#interview">interview</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#science">science</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#artist">artist</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#promotion">Promotion</a>
+                      </li>
+                      <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#technology">technology</a>
+                      </li>
+                      <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#product">Product</a>
+                        </li>
+                    </ul> -->
+                    <!-- <div id="product" class="container tab-pane active"><br>
+                      {{ macro.display(product) }}
+                      
+                    </div>
+                    <div id="science" class="container tab-pane active"><br>
+                        {{ macro.display(science) }}
+                        
+                      </div>
+                    <div id="interview" class="container tab-pane fade"><br>
+                      {{ macro.display(interview) }}
+                    </div>
+                    <div id="artist" class="container tab-pane active"><br>
+                        {{ macro.display(artist) }}
+                        
+                      </div>
+                    <div id="technology" class="container tab-pane fade"><br>
+                      {{ macro.display(technology)}}
+                    </div>
+                    <div id="promotion" class="container tab-pane fade"><br>
+                      {{ macro.display(promotion) }}
+                    </div>
+                     -->
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-bottom:5px; background-color:black;text-align:center;color:white;height:50px;font-size:18px;padding:10px;margin-top:100px;"><p> &copy;2019 copyright |All Right Reserved </p></div>
+  
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+
+    <div class="navbar  navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                
+                <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/blogs/new/"> Write a blog </a>
+                
+                  
+              
+            </div>
+            <div class="navbar-nav">
+                {% if current_user.is_authenticated%}
+                    <a id="start" style="text-align: center; color: whitesmoke;" class="navbar-brand"href="{{url_for('main.index')}}">See all blogs</a>
+                    {% else %}
+                    <a id="start" style="text-align: center; color: whitesmoke;" class="navbar-brand" href="{{url_for('auth.login')}}">Sign In</a>
+                    {% endif %}
+            </div>
+            <div class="navbar-nav">
+                <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/"> Home </a>
+
+            </div>
+            
+
+            <div class="navbar-collapse collapse">
+               
+            <ul class="nav navbar-nav navbar-right" >
+              {% if current_user.is_authenticated %}
+              <li style="color:white">{{current_user.username}}</li>
+              <li><a style="color: white;"  href="{{url_for('auth.logout')}}">Sign out</a></li>
+              {% else %}
+              <li><a style="color: white;" href="{{url_for('auth.login')}}">Sign in</a></li>
+              {%endif%}
+            </ul>
+          </div>
+
+          
+    </div>
+    </div>
