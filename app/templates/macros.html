@@ -1,22 +1,18 @@
-{% macro display(category_list) %}
+{% macro displayBlog(blog_list) %}
 <div class="row">
 	{% if blog_list %}
-		{% for blog in category_list %}
+		{% for blog in blog_list %}
 		<div class="col-md-6">
 			<div class="thumbnail text-center">
 			<h5 class="card-header"><span><strong> Title:</strong></span><strong>{{blog.title}}</strong></h5>
-			<!-- <h5 class="card-header"><span><strong> Category name:</strong></span><strong>{{category.category}}</strong></h5> -->
 			<div class="card-body">
 				<blockquote class="blockquote mb-0">
 					<h4><em>{{blog.description}}</em></h4>
-					<footer class="blockquote-footer"> Posted by {{blog.user.username}}</footer>
+					
 				</blockquote>
 				
-				<a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-default"> Add a comment</a>
-				<!-- <a href="{{url_for('main.upvote',pitch_id = category.id)}}" class= "btn btn-success"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
-				<a href="{{url_for('main.downvote',pitch_id = category.id)}}" class= "btn btn-danger btn-sm"><i class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a> -->
-
-
+				<a href="{{url_for('main.new_comment',blog_id = blog.id)}}" class="btn btn-default"> Add a comment</a>
+				
 			</div>
 		</div>
 
@@ -34,8 +30,8 @@
 
 			{% if comments %}
 			{% for comment in comments %}
-				<div class="row text-center">
-						<a><p style="color: brown">{{ comment.description }}</p></a>
+				<div >
+						<p >{{ comment.description }}</p>
 					
 				</div>
 			{% endfor %}
