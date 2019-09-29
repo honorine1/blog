@@ -11,8 +11,10 @@
 					
 				</blockquote>
 				
-				<a href="{{url_for('main.new_comment',blog_id = blog.id)}}" class="btn btn-default"> Add a comment</a>
-				
+				<p><a href="{{url_for('main.new_comment',blog_id = blog.id)}}" class="btn btn-default"> Add a comment</a>
+					<a href="{{url_for('main.new_comment',blog_id = blog.id)}}" class="btn btn-primary"> Update</a>
+					<a href="{{url_for('main.new_comment',blog_id = blog.id)}}" class="btn btn-danger"> Delete</a>
+				</p>
 			</div>
 		</div>
 
