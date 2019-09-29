@@ -24,12 +24,25 @@
             <div class="navbar-collapse collapse">
                
             <ul class="nav navbar-nav navbar-right" >
+
+                    <ul class="nav navbar-nav navbar-right">
+                            {% if current_user.is_authenticated %}
+                            <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                            <li style="color:white">{{current_user.username}}</li>
+                            <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                            {% else %}
+                            <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                            {%endif%}
+                          </ul>
+          
+
+<!-- 
               {% if current_user.is_authenticated %}
               <li style="color:white">{{current_user.username}}</li>
               <li><a style="color: white;"  href="{{url_for('auth.logout')}}">Sign out</a></li>
               {% else %}
               <li><a style="color: white;" href="{{url_for('auth.login')}}">Sign in</a></li>
-              {%endif%}
+              {%endif%} -->
             </ul>
           </div>
 

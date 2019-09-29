@@ -9,6 +9,9 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:  @localhost/pitching'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
+    # os.environ.get("SQLALCHEMY_DATABASE_URL") = 'postgresql+psycopg2://wecode:  @localhost/blog'
+    os.environ['DATABASE_URL'] = 'postgresql+psycopg2://wecode:  @localhost/blog'
+
     #  email configurations
     # MAIL_SERVER = 'smtp.googlemail.com'
     # MAIL_PORT = 587
@@ -21,6 +24,8 @@ class Config:
     # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
+
+  
     
     @staticmethod
     def init_app(app):
