@@ -1,10 +1,12 @@
 from flask import render_template,request,redirect,url_for,abort, flash
 from . import main
+from ..requests import getQuotes
 from flask_login import login_required, current_user
 from ..models import Blog, User,Comment
 from .forms import BlogForm, CommentForm, UpdateProfile
 from flask.views import View,MethodView
 from .. import db,photos
+
 import markdown2
 
 
@@ -16,10 +18,16 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+    title = 'welcome to Blog web App'
     blogs = Blog.query.all()
-    title = 'Home'
+    try:
+       quotes = getQuotes()
+    except Exception as e:
+       quotes = "quotes unavailable"
+      
+       
   
-    return render_template('index.html',title = title, blogs=blogs)
+    return render_template('index.html', title = title, blogs = blogs,quotes = quotes)
 
 
 
@@ -45,16 +53,16 @@ def new_blog():
     # pitches=Pitch.query.filter_by(id = Pitch.id)
     return render_template('blogs.html',form=form)
 
-# @main.route('/', methods = ['GET','POST'])
-# def index():
+@main.route('/', methods = ['GET','POST'])
+def delete():
 
 #     '''
 #     View root page function that returns the index page and its data
 #     '''
-#     blogs = Blog.query.filter_by(blog_id = Blog.id)
-    
+    blogs = Blog.query.filter_by(user_id = User.id)
+    return redirect(url_for('main.index'))
   
-#     return render_template('index.html',title = title, blogs=blogs)
+    return render_template('index.html', blogs=blogs)
 
 
 
@@ -118,5 +126,17 @@ def new_comment(blog_id):
     all_comments = Comment.query.filter_by(blog_id = blog_id).all()
     return render_template('comments.html', form = form, comment = all_comments, blogs = blogs )
 
+
+
+# def search():
+#     try:
+#         con=pymysql.connect(user='root',password='  ',host='locolhost',database='db')
+#         cur=con.cursor()
+#         sql="select * from users where user_id='%s'"%user_id.get()
+#         cur.execute(sql)
+
+      
+#         result=cur.fetchone()
+#         username.set(result[1])
 
 

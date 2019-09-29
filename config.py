@@ -3,6 +3,7 @@ import os
 class Config:
 
     # MOVIE_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
+    QUOTES_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     # MOVIE_API_KEY ='ff73536b7f0e63d45fe4f61ecf8eb703'
     # SECRET_KEY = os.environ.get('SECRET_KEY')
     SECRET_KEY = 'hono1'
