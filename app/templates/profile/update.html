@@ -8,6 +8,23 @@
       <div class="jumbotron">
           {{wtf.quick_form(form)}}
       </div>
+      <!-- Display user blog -->
+    <div class="jumbotron">
+      <!-- {{wtf.quick_form(form)}} -->
+  <ul style="list-style: none;">
+      {% for blog in blogs %}
+        <div class="list-group">
+          <a href="#">
+            <div class="list-item">
+              <p>{{blog.id}}</p>
+            </div>
+            <h4>{{ blog.description }}</h4>
+            <h6> Posted by {{user.username| capitalize}}.</h6>
+          </a>
+        </div>
+      {% endfor %}
+  </ul>
+  </div>
   </div>
   <div class="col-md-1"></div>
 </div>

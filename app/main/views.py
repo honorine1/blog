@@ -29,7 +29,7 @@ def index():
 def new_blog():
     form = BlogForm()
     # my_upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
-    
+    # userBlog = blog.query.filter_by(blog_id = Blog_id)
     if form.validate_on_submit():
         description = form.description.data
         title = form.title.data
@@ -41,9 +41,22 @@ def new_blog():
         db.session.add(new_blog)
         db.session.commit()
           
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.index,profile/update.html'))
     # pitches=Pitch.query.filter_by(id = Pitch.id)
     return render_template('blogs.html',form=form)
+
+# @main.route('/', methods = ['GET','POST'])
+# def index():
+
+#     '''
+#     View root page function that returns the index page and its data
+#     '''
+#     blogs = Blog.query.filter_by(blog_id = Blog.id)
+    
+  
+#     return render_template('index.html',title = title, blogs=blogs)
+
+
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -74,6 +87,7 @@ def update_profile(uname):
 
     return render_template('profile/update.html',form =form)
 
+
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(uname):
@@ -84,7 +98,7 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
         return redirect(url_for('.profile',uname=user.username))
-    return render_template('profile/update.html',form =form)
+    return render_template('profile/update.html')
 
 @main.route('/comment/new/<int:blog_id>', methods = ['GET','POST'])
 @login_required

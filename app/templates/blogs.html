@@ -18,7 +18,7 @@
 								<p>{{blog.id}}</p>
 							</div>
 							<h4>{{ blog.description }}</h4>
-							<h6> Posted by {{user.username}}.</h6>
+							<h6> Posted by {{user.username| capitalize }}.</h6>
 						</a>
 					</div>
 				{% endfor %}
