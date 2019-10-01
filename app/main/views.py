@@ -6,7 +6,7 @@ from ..models import Blog, User,Comment
 from .forms import BlogForm, CommentForm, UpdateProfile
 from flask.views import View,MethodView
 from .. import db,photos
-
+import datetime
 import markdown2
 
 
@@ -14,20 +14,23 @@ import markdown2
 # Views
 @main.route('/', methods = ['GET','POST'])
 def index():
+ 
 
     '''
     View root page function that returns the index page and its data
     '''
+    myDate= datetime.date.today()
+   
     title = 'welcome to Blog web App'
+    users = User.query.all()
     blogs = Blog.query.all()
     try:
        quotes = getQuotes()
     except Exception as e:
        quotes = "quotes unavailable"
-      
-       
+
   
-    return render_template('index.html', title = title, blogs = blogs,quotes = quotes)
+    return render_template('index.html', myDate=myDate,title = title,users=users, blogs = blogs,quotes = quotes)
 
 
 
@@ -39,6 +42,7 @@ def new_blog():
     # my_upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
     # userBlog = blog.query.filter_by(blog_id = Blog_id)
     if form.validate_on_submit():
+       
         description = form.description.data
         title = form.title.data
         user_id = current_user
@@ -48,21 +52,19 @@ def new_blog():
       
         db.session.add(new_blog)
         db.session.commit()
-          
-        return redirect(url_for('main.index,profile/update.html'))
+        flash('your blog has been created!','success') 
+        return redirect(url_for('main.index'))
     # pitches=Pitch.query.filter_by(id = Pitch.id)
     return render_template('blogs.html',form=form)
 
-@main.route('/', methods = ['GET','POST'])
-def delete():
 
-#     '''
-#     View root page function that returns the index page and its data
-#     '''
-    blogs = Blog.query.filter_by(user_id = User.id)
-    return redirect(url_for('main.index'))
-  
-    return render_template('index.html', blogs=blogs)
+@main.route("/delete/<int:id>",methods=["GET","POST"])
+@login_required
+def delete(id):
+    deletedBlog = Blog.query.filter_by(id=id).first()
+    db.session.delete(deletedBlog)
+    db.session.commit()
+    return redirect (url_for('main.index'))
 
 
 
@@ -72,6 +74,7 @@ def profile(uname):
 
     if user is None:
         abort(404)
+       
 
     return render_template("profile/profile.html", user = user)
 
@@ -106,7 +109,30 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
         return redirect(url_for('.profile',uname=user.username))
-    return render_template('profile/update.html')
+    return render_template('index.html')
+
+@main.route("/blog/<int:blog_id>/update", methods=['GET','POST'])
+@login_required
+def update_blog(blog_id):
+    blog=Blog.query.get_or_404(blog_id)
+    
+
+    form =BlogForm()
+    if form.validate_on_submit():
+        blog.title=form.title.data
+        blog.description=form.description.data
+        db.session.commit()
+        flash('your blog have been updated','success')
+        return redirect(url_for('.index'))
+    elif request.method == 'GET':
+        form.title.data=blog.title
+        form.description.data=blog.description
+        
+        
+    return render_template('blogs.html',form=form)        
+ 
+
+
 
 @main.route('/comment/new/<int:blog_id>', methods = ['GET','POST'])
 @login_required
@@ -127,6 +153,24 @@ def new_comment(blog_id):
     return render_template('comments.html', form = form, comment = all_comments, blogs = blogs )
 
 
+
+@main.route("/delete_comment/<int:comment_id>",methods=["GET","POST"])
+@login_required
+def delete_comment(comment_id):
+    deleted_comment = Comment.query.filter_by(id=comment_id).first()
+    db.session.delete(deleted_comment)
+    db.session.commit()
+    return redirect (url_for('main.index'))
+
+
+  
+# @main.route("/delete_comment/<int:id>",methods=["GET","POST"])
+# @login_required
+# def delete_comment(id):
+#     deleted_comment = Comment.query.filter_by(id=id).first()
+#     db.session.delete(deleted_comment)
+#     db.session.commit()
+#     return redirect (url_for('main.new_comment'))
 
 # def search():
 #     try:
