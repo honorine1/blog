@@ -3,20 +3,20 @@
         <div class="container">
             <div class="navbar-header">
                 
-                <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/blogs/new/"> Write a blog </a>
+                <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/blogs/new/"> Blog </a>
                 
                   
               
             </div>
             <div class="navbar-nav">
                 {% if current_user.is_authenticated%}
-                    <a id="start" style="text-align: center; color: whitesmoke;" class="navbar-brand"href="{{url_for('main.index')}}">See all blogs</a>
+                    <a id="start" style="text-align: center; color: whitesmoke;" class="navbar-brand"href="{{url_for('main.index')}}">Home</a>
                     {% else %}
                     <a id="start" style="text-align: center; color: whitesmoke;" class="navbar-brand" href="{{url_for('auth.login')}}">Sign In</a>
                     {% endif %}
             </div>
             <div class="navbar-nav">
-                <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/"> Home </a>
+                <!-- <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/"> Home </a> -->
 
             </div>
             
