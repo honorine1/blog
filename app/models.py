@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from . import login_manager
 from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash,check_password_hash
-
+from datetime import datetime
 
 
 @login_manager.user_loader
@@ -62,6 +62,7 @@ class Blog(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     description = db.Column(db.String(), index = True)
     title = db.Column(db.String())
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
     # category = db.Column(db.String(255), nullable=False)
     comments = db.relationship('Comment',backref='pitch',lazy='dynamic')
     # upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
@@ -81,9 +82,11 @@ class Comment(db.Model):
     __tablename__='comments'
     
     id = db.Column(db.Integer,primary_key=True)
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable= False)
     description = db.Column(db.Text)
+
 
     
     def __repr__(self):
