@@ -7,8 +7,10 @@
 {% endblock %}
 
 
+
 {% block content %}
 
+ 
 <div class="container-fluid welcome-page">
     <div class="container">
         <div class="row">
@@ -23,18 +25,18 @@
                     <div class="jumbotron">
                             
                             <hr class="my-4">
-                            <!-- <img style="text-align: center; width:100%;"src="https://miro.medium.com/max/2560/1*2bk4TJ7x0JZEECQ9IvzUDw.jpeg"> -->
+                             
                            
-                            <div class="textmiddle">
+                             <div class="textmiddle">
                                 <h3 style="text-align: center;"class="display-4"> welcome to My blog web  app</h3>
                                 <p>{{ quotes.quote }}</p>
                                 <p>{{ quotes.author }}</p>
                             
                             
                             </div>
-                            <!-- <p style="text-align: center;"class="lead">a pitch is a presentation of a business idea to potential investors. People pitch a business because they need resources. If the goal is to raise startup cash, the target of the pitch is an investor. Other businesses pitch to potential customers to sell their product.</p> -->
+                            
                             <p class="lead">
-                              <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+                             
                             <a style="text-align: center; width:90%;color: whitesmoke;" class="btn btn-primary" href="/blogs/new/"> Post a Blog </a>
                             
                           
@@ -44,13 +46,12 @@
                     
                     <h3 style="color: blue;text-align: center">see all blogs here</h3>
                     <br>
-                    
-              
+                  
                     <div id="title" class="container tab-pane active"><br>
                       {{ macro.displayBlog(blogs) }}
                      
-                      
                     </div>
+                    <p></p>
                    
                   </div>
             </div>
@@ -59,6 +60,6 @@
     <div style="margin-bottom:5px; background-color:black;text-align:center;color:white;height:50px;font-size:18px;padding:10px;margin-top:100px;"><p> &copy;2019 copyright |All Right Reserved </p></div>
   
 
-</div>
+</div> 
 
-{% endblock %}
+{% endblock %} 
