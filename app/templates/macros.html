@@ -7,13 +7,14 @@
 			<h5 class="card-header"><span><strong> Title:</strong></span><strong>{{blog.title}}</strong></h5>
 			<div class="card-body">
 				<blockquote class="blockquote mb-0">
-					<h4><em>{{blog.description}}</em></h4>
+					<h4><em>{{blog.description}},</em></h4>
+                    <small class="text-muted">{{blog.posted}}</small>
 					
 				</blockquote>
 				
 				<p><a href="{{url_for('main.new_comment',blog_id = blog.id)}}" class="btn btn-default"> Add a comment</a>
-					<a href="{{url_for('main.new_blog',blog_id = blog.id)}}" class="btn btn-primary"> Update</a>
-					<a href="{{url_for('main.new_blog',blog_id = blog.id)}}" class="btn btn-danger"> Delete</a>
+					<a href="{{url_for('main.update_blog',blog_id = blog.id)}}" class="btn btn-primary"> Update</a>
+					<a href="{{url_for('main.delete',id =blog.id)}}" class="btn btn-danger"> Delete</a>
 				</p>
 			</div>
 		</div>
@@ -33,7 +34,13 @@
 			{% if comments %}
 			{% for comment in comments %}
 				<div >
+				
 						<p >{{ comment.description }}</p>
+						<p>{{comment.posted}}</p>
+						<p>
+							
+							<a href="{{url_for('main.delete_comment',comment_id =comment.id)}}" class="btn btn-danger"> Delete</a>
+						</p>
 					
 				</div>
 			{% endfor %}
